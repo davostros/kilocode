@@ -9,51 +9,75 @@
 
 # 🚀 Kilo Code
 
-> Open-source VS Code AI agent. Merged features from [Roo Code](https://github.com/RooVetGit/Roo-Code) and [Cline](https://github.com/cline/cline).
+> Agent IA open source pour VS Code. Fusionne les fonctionnalités de [Roo Code](https://github.com/RooVetGit/Roo-Code) et de [Cline](https://github.com/cline/cline).
 
-- ✨ Generate code from natural language
-- ✅ Checks its own work
-- 🧪 Run terminal commands
-- 🌐 Automate the browser
-- 🤖 Latest AI models
-- 🎁 API keys optional
-- 💡 **$20 free credits for Gemini 2.5 Pro, Claude 4 Sonnet & Opus, and GPT-4.1**<br/>Share feedback and earn more credits!
+### Glossaire
+
+- **Agent IA** : programme qui automatise des tâches grâce à l’intelligence artificielle.
+- **Open source** : code source accessible et modifiable librement.
+
+- ✨ Génère du code à partir du langage naturel
+- ✅ Vérifie son propre travail
+- 🧪 Exécute des commandes terminal
+- 🌐 Automatise le navigateur
+- 🤖 Derniers modèles d’IA
+- 🎁 Clés API facultatives
+- 💡 **20 $ de crédits offerts pour Gemini 2.5 Pro, Claude 4 Sonnet & Opus et GPT‑4.1**<br/>Partagez vos retours pour en gagner davantage !
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Kilo-Org/kilocode/refs/heads/main/kilo.gif" width="100%" />
 </p>
 
-- [VS Code Marketplace](https://kilocode.ai/vscode-marketplace?utm_source=Readme) (download)
-- [Official KiloCode.ai Home page](https://kilocode.ai) (learn more)
+- [VS Code Marketplace](https://kilocode.ai/vscode-marketplace?utm_source=Readme) (téléchargement)
+- [Page d’accueil officielle](https://kilocode.ai) (en savoir plus)
 
-## Key Features
+## Fonctionnalités clés
 
-- **Code Generation:** Generate code using natural language.
-- **Task Automation:** Automate repetitive coding tasks.
-- **Automated Refactoring:** Refactor and improve existing code.
-- **MCP Server Marketplace**: Easily find, and use MCP servers to extend the agent capabilities.
-- **Multi Mode**: Plan with Architect, Code with Coder, and Debug with Debugger, and make your own custom modes.
+### Glossaire
 
-## How to get started with Kilo Code
+- **Refactorisation** : amélioration du code sans changer son fonctionnement.
+- **MCP** : « Multi‑Channel Provider », serveur permettant d’étendre l’agent.
+- **Architect / Coder / Debugger** : modes de planification, de codage et de débogage.
 
-1.  Install the Kilo Code extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code).
-2.  Log in with your Google Account to get $20 in free Claude 4 Sonnet & Opus credits.
-3.  Start using the extension. Here's a video to help you get started (just click on the image below and you'll be redirected to YouTube):
+- **Génération de code :** produire du code à partir d’un texte.
+- **Automatisation des tâches :** automatiser les actions répétitives.
+- **Refactorisation automatique :** améliorer le code existant.
+- **Marketplace MCP :** trouver et utiliser des serveurs MCP pour étendre les capacités de l’agent.
+- **Mode Multi :** planifier avec Architect, coder avec Coder, déboguer avec Debugger et créer vos propres modes.
+
+## Premiers pas avec Kilo Code
+
+### Glossaire
+
+- **Extension** : module additionnel à VS Code.
+- **Crédits** : montant utilisable pour tester des modèles payants.
+
+1.  Installez l’extension Kilo Code depuis la [Marketplace VS Code](https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code).
+2.  Connectez‑vous avec votre compte Google pour obtenir 20 $ de crédits gratuits pour Claude 4 Sonnet & Opus.
+3.  Commencez à l’utiliser. Voici une vidéo pour démarrer (cliquez sur l’image ci‑dessous, vous serez redirigé vers YouTube) :
 
 [![Watch the video](https://img.youtube.com/vi/pqGfYXgrhig/maxresdefault.jpg)](https://youtu.be/pqGfYXgrhig)
 
-## Difference between Roo Code and Cline
+## Différences entre Roo Code et Cline
 
-We're doing our best to combine the best of both worlds. Kilo Code combines all features of Cline, Roo, and adds a few of our own additions. It has the best features of both, and we're working on making it even better!
+### Glossaire
 
-No need to fiddle with API keys, Kilo Code ships with the latest AI models plugged in, including Claude 4 Sonnet and Opus and Gemini 2.5 Pro.
+- **Fork** : reprise du code d’un autre projet pour créer une nouvelle version.
 
-Kilo Code is a direct fork from Roo Code, but also includes the following features from Cline (and more):
+Nous faisons de notre mieux pour réunir le meilleur des deux mondes. Kilo Code rassemble toutes les fonctions de Cline et Roo, tout en ajoutant nos propres améliorations. Il combine le meilleur des deux et nous travaillons encore à l’améliorer !
 
-- MCP Server Marketplace: Easily find, and use MCP servers to extend the agent capabilities.
-- System notifications: Get notified when the agent is done with a task.
-- Easy model connection: with bigger free tier.
+Inutile de jongler avec les clés API : Kilo Code intègre déjà les derniers modèles d’IA, dont Claude 4 Sonnet et Opus ainsi que Gemini 2.5 Pro.
 
-## Extension Development
+Kilo Code est un fork direct de Roo Code et inclut également les fonctionnalités suivantes de Cline (et plus encore) :
 
-For details on building and developing the extension, see [DEVELOPMENT.md](/DEVELOPMENT.md)
+- Marketplace MCP : trouvez et utilisez facilement des serveurs MCP pour étendre les capacités de l’agent.
+- Notifications système : soyez averti lorsque l’agent a terminé une tâche.
+- Connexion aisée aux modèles : avec un quota gratuit plus généreux.
+
+## Développement de l’extension
+
+### Glossaire
+
+- **DEVELOPMENT.md** : guide détaillant la procédure de contribution.
+
+Pour plus de détails sur la compilation et le développement de l’extension, consultez [DEVELOPMENT.md](/DEVELOPMENT.md)

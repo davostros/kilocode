@@ -1,188 +1,213 @@
-# Kilo Code Development Guide
+# Guide de développement de Kilo Code
 
-Welcome to the Kilo Code development guide! This document will help you set up your development environment and understand how to work with the codebase. Whether you're fixing bugs, adding features, or just exploring the code, this guide will get you started.
+### Glossaire
 
-## Prerequisites
+- **Codebase** : ensemble du code source du projet.
 
-Before you begin, make sure you have the following installed:
+Bienvenue dans le guide de développement de Kilo Code ! Ce document vous aidera à configurer votre environnement et à comprendre comment travailler avec la base de code. Que vous corrigiez des bugs, ajoutiez des fonctionnalités ou souhaitiez simplement explorer le projet, ce guide vous servira de point de départ.
 
-1. **Git** - For version control
-2. **Node.js** (version [v20.19.2](https://github.com/Kilo-Org/kilocode/blob/main/.nvmrc) recommended)
-3. **pnpm** - Package manager (https://pnpm.io/)
-4. **Visual Studio Code** - Our recommended IDE for development
+## Prérequis
 
-## Getting Started
+### Glossaire
+
+- **Git** : système de contrôle de version.
+- **Node.js** : environnement d’exécution JavaScript.
+- **pnpm** : gestionnaire de paquets rapide.
+- **Visual Studio Code** : éditeur de code recommandé pour le développement.
+
+Avant de commencer, assurez‑vous d’avoir installé :
+
+1. **Git** – pour le contrôle de version
+2. **Node.js** (version recommandée [v20.19.2](https://github.com/Kilo-Org/kilocode/blob/main/.nvmrc))
+3. **pnpm** – gestionnaire de paquets (https://pnpm.io/)
+4. **Visual Studio Code** – notre IDE conseillé pour contribuer
+
+## Pour commencer
+
+### Glossaire
+
+- **Fork** : copie personnelle d’un dépôt GitHub.
+- **Dépendances** : bibliothèques nécessaires au fonctionnement du projet.
 
 ### Installation
 
-1. **Fork and Clone the Repository**:
+1. **Forkez et clonez le dépôt** :
 
-    - **Fork the Repository**:
-        - Visit the [Kilo Code GitHub repository](https://github.com/Kilo-Org/kilocode)
-        - Click the "Fork" button in the top-right corner to create your own copy.
-    - **Clone Your Fork**:
+    - **Fork du dépôt** :
+        - Rendez‑vous sur le [dépôt GitHub Kilo Code](https://github.com/Kilo-Org/kilocode)
+        - Cliquez sur le bouton « Fork » en haut à droite pour créer votre propre copie.
+    - **Clonez votre fork** :
         ```bash
-        git clone https://github.com/[YOUR-USERNAME]/kilocode.git
+        git clone https://github.com/[VOTRE-UTILISATEUR]/kilocode.git
         cd kilocode
         ```
-        Replace `[YOUR-USERNAME]` with your actual GitHub username.
+        Remplacez `[VOTRE-UTILISATEUR]` par votre nom d’utilisateur GitHub.
 
-2. **Install dependencies**:
+2. **Installez les dépendances** :
 
     ```bash
     pnpm install
     ```
 
-    This command will install dependencies for the main extension, webview UI, and e2e tests.
+    Cette commande installe les dépendances pour l’extension principale, l’interface webview et les tests end‑to‑end.
 
-3. **Install VSCode Extensions**:
-    - **Required**: [ESBuild Problem Matchers](https://marketplace.visualstudio.com/items?itemName=connor4312.esbuild-problem-matchers) - Helps display build errors correctly.
+3. **Installez les extensions VS Code** :
+    - **Obligatoire** : [ESBuild Problem Matchers](https://marketplace.visualstudio.com/items?itemName=connor4312.esbuild-problem-matchers) – aide à afficher correctement les erreurs de compilation.
 
-While not strictly necessary for running the extension, these extensions are recommended for development:
+Ces extensions ne sont pas indispensables pour lancer l’extension mais sont recommandées pour le développement :
 
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - Integrates ESLint into VS Code.
-- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - Integrates Prettier into VS Code.
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) – intègre ESLint dans VS Code.
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) – intègre Prettier dans VS Code.
 
-The full list of recommended extensions is [here](https://github.com/Kilo-Org/kilocode/blob/main/.vscode/extensions.json)
+La liste complète des extensions recommandées se trouve [ici](https://github.com/Kilo-Org/kilocode/blob/main/.vscode/extensions.json)
 
-### Project Structure
+### Structure du projet
 
-The project is organized into several key directories:
+### Glossaire
 
-- **`src/`** - Core extension code
-    - **`core/`** - Core functionality and tools
-    - **`services/`** - Service implementations
-- **`webview-ui/`** - Frontend UI code
-- **`e2e/`** - End-to-end tests
-- **`scripts/`** - Utility scripts
-- **`assets/`** - Static assets like images and icons
+- **Frontend** : partie visible par l’utilisateur.
+- **Scripts** : petits programmes utilitaires.
 
-## Development Workflow
+Le projet est organisé en plusieurs répertoires clés :
 
-### Running the Extension
+- **`src/`** – code principal de l’extension
+    - **`core/`** – fonctionnalités et outils cœur
+    - **`services/`** – implémentations des services
+- **`webview-ui/`** – code de l’interface (frontend)
+- **`e2e/`** – tests de bout en bout
+- **`scripts/`** – scripts utilitaires
+- **`assets/`** – ressources statiques (images, icônes…)
 
-To run the extension in development mode:
+## Flux de développement
 
-1. Press `F5` (or select **Run** → **Start Debugging**) in VSCode
-2. This will open a new VSCode window with Kilo Code loaded
+### Glossaire
 
-### Hot Reloading
+- **Hot Reloading** : rechargement automatique des modifications sans redémarrage.
 
-- **Webview UI changes**: Changes to the webview UI will appear immediately without restarting
-- **Core extension changes**: Changes to the core extension code will automatically reload the ext host
+### Lancement de l’extension
 
-In development mode (NODE_ENV="development"), changing the core code will trigger a `workbench.action.reloadWindow` command, so it is no longer necessary to manually start/stop the debugger and tasks.
+Pour exécuter l’extension en mode développement :
 
-> **Important**: In production builds, when making changes to the core extension, you need to:
+1. Appuyez sur `F5` (ou choisissez **Run** → **Start Debugging**) dans VS Code
+2. Une nouvelle fenêtre VS Code s’ouvrira avec Kilo Code chargé
+
+### Rechargement à chaud
+
+- **Modifications de la webview** : elles apparaissent immédiatement sans redémarrage
+- **Modifications du cœur de l’extension** : elles rechargent automatiquement l’hôte d’extension
+
+En mode développement (NODE_ENV="development"), la modification du cœur déclenche la commande `workbench.action.reloadWindow`, il n’est donc plus nécessaire de redémarrer manuellement le débogueur et les tâches.
+
+> **Important** : dans les versions de production, lorsque vous modifiez le cœur de l’extension, vous devez :
 >
-> 1. Stop the debugging process
-> 2. Kill any npm tasks running in the background (see screenshot below)
-> 3. Start debugging again
+> 1. Arrêter le processus de débogage
+> 2. Tuer les tâches npm en arrière‑plan (voir capture ci‑dessous)
+> 3. Relancer le débogage
 
 <img width="600" alt="Stopping background tasks" src="https://github.com/user-attachments/assets/466fb76e-664d-4066-a3f2-0df4d57dd9a4" />
 
-### Building the Extension
+### Compilation de l’extension
 
-To build a production-ready `.vsix` file:
+Pour construire un fichier `.vsix` prêt pour la production :
 
 ```bash
 pnpm build
 ```
 
-This will:
+Cette commande va :
 
-1. Build the webview UI
-2. Compile TypeScript
-3. Bundle the extension
-4. Create a `.vsix` file in the `bin/` directory
+1. Construire la webview
+2. Compiler le TypeScript
+3. Packager l’extension
+4. Créer un fichier `.vsix` dans le répertoire `bin/`
 
-### Installing the Built Extension
+### Installation de l’extension compilée
 
-To install your built extension:
+Pour installer votre extension compilée :
 
 ```bash
 code --install-extension "$(ls -1v bin/kilo-code-*.vsix | tail -n1)"
 ```
 
-Replace `[version]` with the current version number.
+Remplacez `[version]` par le numéro de version actuel.
 
-## Testing
+## Tests
 
-Kilo Code uses several types of tests to ensure quality:
+Kilo Code utilise plusieurs types de tests pour garantir la qualité :
 
-### Unit Tests
+### Tests unitaires
 
-Run unit tests with:
+Lancez les tests unitaires avec :
 
 ```bash
 pnpm test
 ```
 
-This runs both extension and webview tests.
+Cette commande exécute à la fois les tests de l’extension et ceux de la webview.
 
-### End-to-End Tests
+### Tests de bout en bout
 
-For more details on E2E tests, see [apps/vscode-e2e](apps/vscode-e2e/).
+Pour plus de détails sur les tests E2E, consultez [apps/vscode-e2e](apps/vscode-e2e/).
 
-## Linting and Type Checking
+## Lintage et vérification des types
 
-Ensure your code meets our quality standards:
+Assurez‑vous que votre code respecte nos standards de qualité :
 
 ```bash
 pnpm lint          # Run ESLint
 pnpm check-types   # Run TypeScript type checking
 ```
 
-## Git Hooks
+## Hooks Git
 
-This project uses [Husky](https://typicode.github.io/husky/) to manage Git hooks, which automate certain checks before commits and pushes. The hooks are located in the `.husky/` directory.
+Ce projet utilise [Husky](https://typicode.github.io/husky/) pour gérer les hooks Git, automatisant certaines vérifications avant les commits et les pushes. Les hooks se trouvent dans le répertoire `.husky/`.
 
-### Pre-commit Hook
+### Hook pre-commit
 
-Before a commit is finalized, the `.husky/pre-commit` hook runs:
+Avant qu’un commit soit finalisé, le hook `.husky/pre-commit` s’exécute :
 
-1.  **Branch Check**: Prevents committing directly to the `main` branch.
-2.  **Type Generation**: Runs `pnpm --filter kilo-code generate-types`.
-3.  **Type File Check**: Ensures that any changes made to `src/exports/roo-code.d.ts` by the type generation are staged.
-4.  **Linting**: Runs `lint-staged` to lint and format staged files.
+1.  **Vérification de branche** : empêche de committer directement sur `main`.
+2.  **Génération de types** : exécute `pnpm --filter kilo-code generate-types`.
+3.  **Vérification du fichier de types** : s’assure que les modifications sur `src/exports/roo-code.d.ts` sont bien ajoutées au commit.
+4.  **Lintage** : lance `lint-staged` pour linter et formater les fichiers indexés.
 
-### Pre-push Hook
+### Hook pre-push
 
-Before changes are pushed to the remote repository, the `.husky/pre-push` hook runs:
+Avant de pousser des changements sur le dépôt distant, le hook `.husky/pre-push` s’exécute :
 
-1.  **Branch Check**: Prevents pushing directly to the `main` branch.
-2.  **Compilation**: Runs `pnpm run check-types` to ensure typing is correct.
-3.  **Changeset Check**: Checks if a changeset file exists in `.changeset/` and reminds you to create one using `npm run changeset` if necessary.
+1.  **Vérification de branche** : empêche de pousser directement sur `main`.
+2.  **Compilation** : lance `pnpm run check-types` pour vérifier les types.
+3.  **Vérification de changeset** : vérifie qu’un fichier existe dans `.changeset/` et rappelle d’en créer un avec `npm run changeset` si besoin.
 
-These hooks help maintain code quality and consistency. If you encounter issues with commits or pushes, check the output from these hooks for error messages.
+Ces hooks aident à maintenir la qualité et la cohérence du code. En cas de problème lors d’un commit ou d’un push, consultez leurs messages pour trouver la cause.
 
-## Troubleshooting
+## Dépannage
 
-### Common Issues
+### Problèmes courants
 
-1. **Extension not loading**: Check the VSCode Developer Tools (Help > Toggle Developer Tools) for errors
-2. **Webview not updating**: Try reloading the window (Developer: Reload Window)
-3. **Build errors**: Make sure all dependencies are installed with `pnpm install`
+1. **Extension ne se charge pas** : vérifiez les outils développeur de VS Code (Aide > Basculer les outils développeur) pour voir les erreurs
+2. **Webview ne se met pas à jour** : essayez de recharger la fenêtre (Developer: Reload Window)
+3. **Erreurs de compilation** : assurez‑vous que toutes les dépendances sont installées avec `pnpm install`
 
-### Debugging Tips
+### Conseils de débogage
 
-- Use `console.log()` statements in your code for debugging
-- Check the Output panel in VSCode (View > Output) and select "Kilo Code" from the dropdown
-- For webview issues, use the browser developer tools in the webview (right-click > "Inspect Element")
+- Utilisez des instructions `console.log()` dans votre code pour déboguer
+- Consultez le panneau Output de VS Code (Affichage > Output) et sélectionnez « Kilo Code » dans la liste déroulante
+- Pour les problèmes de webview, ouvrez les outils développeur du navigateur dans la webview (clic droit > « Inspect Element »)
 
-## Contributing
+## Contribuer
 
-We welcome contributions to Kilo Code! Here's how you can help:
+Nous accueillons volontiers vos contributions à Kilo Code ! Voici comment vous pouvez aider :
 
-1. **Report an issue** using [GitHub Issues](https://github.com/Kilo-Org/kilocode/issues)
-2. **Find an issue** and submit a Pull Request with your fix
-3. **Write tests** to improve Code Coverage
-4. **Improve Documentation** at [kilocode.ai/docs](https://kilocode.ai/docs)
-5. **Suggest a new feature** using [GitHub Discussions](https://github.com/Kilo-Org/kilocode/discussions/categories/ideas)!
-6. Want to **implement something new**? Awesome! We'd be glad to support you on [Discord](https://discord.gg/Ja6BkfyTzJ)!
+1. **Signaler un problème** via [GitHub Issues](https://github.com/Kilo-Org/kilocode/issues)
+2. **Trouver un ticket** et proposer un Pull Request avec votre correction
+3. **Écrire des tests** pour améliorer la couverture
+4. **Améliorer la documentation** sur [kilocode.ai/docs](https://kilocode.ai/docs)
+5. **Suggérer une nouvelle fonctionnalité** via [GitHub Discussions](https://github.com/Kilo-Org/kilocode/discussions/categories/ideas) !
+6. Vous voulez **implémenter quelque chose de nouveau** ? Super ! Nous serons ravis de vous aider sur [Discord](https://discord.gg/Ja6BkfyTzJ) !
 
-## Community
+## Communauté
 
-Your contributions are welcome! For questions or ideas, please join our Discord server: https://discord.gg/Ja6BkfyTzJ
+Vos contributions sont les bienvenues ! Pour toute question ou idée, rejoignez notre serveur Discord : https://discord.gg/Ja6BkfyTzJ
 
-We look forward to your contributions and feedback!
+Nous avons hâte de recevoir vos contributions et vos retours !
